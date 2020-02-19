@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stretchator 3000™</title>
+
+    <link rel="stylesheet" href="sakura.css" />
+    <style>
+      main button {
+        font-size: 25px;
+      }
+      .center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="center">
+      <div styl><button onclick="start()">Start</button></div>
+      <br />
+      <div><button onclick="stop()">Stop</button></div>
+    </main>
+    <script>
+      const audio = new Audio("beep.mp3");
+      function beep() {
+        audio.play();
+        navigator.vibrate(200);
+      }
+      let interval = null;
+      function start() {
+        beep();
+        interval = setInterval(beep, 3000);
+      }
+      function stop() {
+        clearInterval(interval);
+      }
+    </script>
+  </body>
+</html>
