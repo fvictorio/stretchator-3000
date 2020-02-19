@@ -63,7 +63,6 @@
         audio.play();
         navigator.vibrate(750);
       }
-      let beepInterval = null;
 
       function progress() {
         const currentProgress = Math.round(((Date.now() - lastBeep) / INTERVAL) * 100);
@@ -72,15 +71,19 @@
         startButton.style.background = buttonBackground;
       }
 
+      let progressInterval = null
+      let beepInterval = null
       function start() {
+        stop()
         beep();
         beepInterval = setInterval(beep, INTERVAL);
         progressInterval = setInterval(progress, 250);
         video.play();
       }
       function stop() {
-        clearInterval(beepInterval);
-        clearInterval(progressInterval);
+        startButton.style.background = 'white'
+        if (beepInterval) clearInterval(beepInterval);
+        if (progressInterval) clearInterval(progressInterval);
       }
       document.body.appendChild(video);
       video.setAttribute("loop", "");
